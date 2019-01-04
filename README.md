@@ -1,1 +1,0 @@
-# shayminmyn.github.io
