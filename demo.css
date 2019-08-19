@@ -1,0 +1,116 @@
+.wrap {
+    margin-top: 150px;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+
+.cube {
+    margin: auto;
+    position: relative;
+    height: 200px;
+    width: 200px;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 2s, opacity 2s;
+    -webkit-backface-visibility: hidden;
+}
+
+.cube > div {
+    position: absolute;
+    box-sizing: border-box;
+    padding:  10px;
+    height: 100%;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.front {
+    transform: translateZ(100px);
+    background-image: url(1.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .back {
+    transform: translateZ(-100px) rotateY(180deg);
+    background-image: url(2.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .right {
+    transform: rotateY(-270deg) translateX(100px);
+    transform-origin: top right;
+    background-image: url(3.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .left {
+    transform: rotateY(270deg) translateX(-100px);
+    transform-origin: center left;
+    background-image: url(4.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .top {
+    transform: rotateX(-270deg) translateY(-100px);
+    transform-origin: top center;
+    background-image: url(5.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .bottom {
+    transform: rotateX(270deg) translateY(100px);
+    transform-origin: bottom center;
+    background-image: url(6.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+
+/* 3d spinning */
+  @keyframes rotate {
+    from {
+      transform:  rotateX(0deg) rotateY(0deg);
+    }
+    
+    to {
+      transform:  rotateX(360deg)  rotateY(360deg);
+    }
+  }
+  
+  .cube {
+    animation: rotate 20s infinite linear;
+  }
+
+  .wrap:hover  .front {
+      transform: translateZ(200px);
+  }
+  .wrap:hover .back {
+    transform: translateZ(-200px) rotateY(180deg);
+  }
+  
+  .wrap:hover .right {
+    transform: rotateY(-270deg) translateZ(100px) translateX(100px);
+  }
+  
+  .wrap:hover .left {
+    transform: rotateY(270deg) translateZ(100px) translateX(-100px);
+  }
+  
+  .wrap:hover .top {
+    transform: rotateX(-270deg) translateZ(100px) translateY(-100px);
+  }
+  
+  .wrap:hover .bottom {
+    transform: rotateX(270deg) translateZ(100px) translateY(100px);
+  }
+
+
+
+  .cube > div {
+      transition: transform 0.2s ease-in;
+  }
+
