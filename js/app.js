@@ -93,7 +93,7 @@ var quiz;
 let getQuestions = async () => {
     const content = document.getElementById("content_quiz").value.toLowerCase();
     const level = "beginer";
-    const url = 'http://35.229.167.122:3333/questions/key?level='+level+'&content='+content;
+    const url = 'https://quizapimin.herokuapp.com/questions/key?level='+level+'&content='+content;
     try {
         let res = await fetch(url);
         let questions = await res.json();
@@ -117,7 +117,7 @@ var leaderboard;
 let getLeaderBoard = async () => {
     const content = document.getElementById("content_quiz").value.toLowerCase();
     const level = "beginer";
-    const url = 'http://35.229.167.122:3333/leaderboard?level='+level+'&content='+content;
+    const url = 'https://quizapimin.herokuapp.com/leaderboard?level='+level+'&content='+content;
     try {
         let res = await fetch(url);
         leaderboard = await res.json();
