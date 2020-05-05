@@ -1,141 +1,102 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hanuri</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
-	<link href="css/templatemo-style.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+	<title>Free Quiz</title>
 </head>
-<body> 
-
-	<div class="container">
-	<!-- Top box -->
-		<!-- Logo & Site Name -->
-		<div class="placeholder">
-			<div class="parallax-window" data-parallax="scroll" data-image-src="img/muoimonngonhanquoc.jpg">
-				<div class="tm-header">
-					<div class="row tm-header-inner">
-						<div class="col-md-6 col-12">
-							<img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" /> 
-							<div class="tm-site-text-box">
-								<h1 class="tm-site-title">Hanuri</h1>
-								<h6 class="tm-site-description">Korea restaurant</h6>	
-							</div>
-						</div>
-						<nav class="col-md-6 col-12 tm-nav">
-							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link">Home</a></li>
-                                <li class="tm-nav-li"><a href="feedback.html" class="tm-nav-link active">Feedback</a></li>
-								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link active">About</a></li>
-								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contact</a></li>
-							</ul>
-						</nav>	
-					</div>
+<body>
+		<div id="main">
+			<div id = "start-area">
+				<h1><b>Quiz Competition</b></h1>
+				<div id = "types" class="custom-select" style="width:200px;">
+					<select id="content_quiz">
+						<option><b>Hiragana</b></option>
+						<option><b>Katagana</b></option>
+					</select>
+				</div>
+				<div class = "controls">
+					<button id = "start-btn" class = "btn" onclick="getQuestions()"><span>Start</span></button>
 				</div>
 			</div>
+	
+			<div id = "display-left" class = "hide">
+				<span id = "countdown" class="glyphicon glyphicon-time">:<b id = "timer"> 60</b></span>
+				<p id = "score">Score: <span id = "show"></span></p>
+			</div>
+			
+			<div id = "display-right" class = "hide">
+				<h2>Leaderboard<h2>
+				<table>
+					<tr>
+						<th>Name</th>
+						<th>Score</th>
+					</tr>
+					<tr>
+						<th id = "name0" class = "tbl">____</th>
+						<th id = "score0" class = "tbl">____</th>
+					</tr>
+					<tr>
+						<th id = "name1" class = "tbl">____</th>
+						<th id = "score1" class = "tbl">____</th>
+					</tr>
+					<tr>
+						<th id = "name2" class = "tbl">____</th>
+						<th id = "score2" class = "tbl">____</th>
+					</tr>
+					<tr>
+						<th id = "name3" class = "tbl">____</th>
+						<th id = "score3" class = "tbl">____</th>
+					</tr>
+					<tr>
+						<th id = "name4" class = "tbl">____</th>
+						<th id = "score4" class = "tbl">____</th>
+					</tr>
+				</table>
+			</div>
+			<div id = "quiz-area" class = "hide">
+				<h1><b>QUIZ</b></h1>
+				<hr style="margin-top: 10px">
+				
+				<p id="question"></p>
+	
+				<div id ="button">
+					<button id="btn0"><span id="choice0"></span></button>
+					<button id="btn1"><span id="choice1"></span></button>
+					<button id="btn2"><span id="choice2"></span></button>
+					<button id="btn3"><span id="choice3"></span></button>
+				</div>
+	
+				<footer>
+					<hr>
+					<p id="progress">Question x of y.</p>
+				</footer>
+			</div>
+	
+			<div id = "restart-area" class = "hide">
+				<p id = "scores"></p>
+				<div id = "name-confirm" class="hide">
+					<input id = "popup-name" class="hide" type="text" name="">
+				</div>	
+			</div>
+				<div id = "controls-01" class="hide">
+					<a href="index.html"><button id = "restart-btn" class="hide"><span>Restart</span></button></a>
+				</div>
+			</div>
+			<button id = "enter-btn" class="hide" onclick="saveLeaderBoard()">Enter</button>
+	
 		</div>
 
-		<main>
-			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">Welcome to Hanuri</h2>
-				<p class="col-12 text-center">Thực Đơn Phong Phú - Những Món ăn chuẩn vị Hàn Quốc, đặc sắc như Bạch Tuộc Xào Cay Octopus, Mì Lạnh, Canh Mukbasal,... Do chính tay đầu bếp người Hàn Quốc nhiều năm kinh nghiệm trực tiếp chế biến cùng những loại gia vị được nhập khẩu trực tiếp từ Hàn Quốc. Không gian sang trọng, món ăn thơm ngon, chắc chắn sẽ làm hài lòng những vị thực khách khó tính nhất</p>
-			</header>
-
-			<!-- Gallery -->
-			<div class="row tm-gallery">
-				<!-- gallery page 1 -->
-				<div id="tm-gallery-page-pizza" class="tm-gallery-page">
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/01.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Lẩu Kimchi - Kimchi Hotpot</h4>
-								<p class="tm-gallery-description">Lẩu kim chi là món ăn truyền thống của Hàn Quốc. Với nguyên liệu đơn giản bạn có thể thực hiện món này đãi cả gia đình và bạn bè trong tiết trời se lạnh. Hương vị cay cay, tê tê của món ăn này khiến ai cũng sẽ phải xuýt xoa thích thú.</p>
-								<p class="tm-gallery-price">330,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/02.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Canh Đậu Hũ Non Hải Sản - Spicy Soft Tofu Stew With Seafood</h4>
-								<p class="tm-gallery-description">Với cách chế biến độc đáo kết hợp hài hòa giữa các nguyên liệu rau củ, nấm và hải sản, món ăn này không chỉ ngon mà còn chứa đầy đủ các dưỡng chất, ăn một lần chắc chắn sẽ thích ngay.</p>
-								<p class="tm-gallery-price">200,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/03.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Combo Thịt Bò - Beef Mix Combo</h4>
-								<p class="tm-gallery-description">Combo thịt bò 570g gồm: Sườn bò có xương, sườn bò không xương,thịt dẻ sườn bò, thịt ba rọi bò, thịt nạm bò.</p>
-								<p class="tm-gallery-price">900,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/04.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Combo Thịt Heo - Pork Mix Combo</h4>
-								<p class="tm-gallery-description">Combo thịt heo 590g gồm: Thịt ba rọi, thịt ướp gia vị, thịt má thủ, thịt ba rọi cuộn nấm,  thịt ba rọi nắp đá.</p>
-								<p class="tm-gallery-price">500,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/05.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Sườn Bò Mỹ Có Xương - Bone In Short Ribs</h4>
-								<p class="tm-gallery-description">Sườn bò Mỹ có xương là phần thịt được xẻ từ xương sườn của bò. Như thường lệ sườn non luôn là thức ăn tuyệt diệu cho món nướng, người ta ưa chuộng phần thịt này nhờ độ mềm, ngọt ngậy và hương vị đậm đà.</p>
-								<p class="tm-gallery-price">450,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/06.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Lẩu Xúc Xích - Spicy Sausage Hotpot</h4>
-								<p class="tm-gallery-description">Lẩu budae hay còn gọi là lẩu xúc xích (Budae jjigae).</p>
-								<p class="tm-gallery-price">330,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/07.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Cơm Trộn Nồi Đá - Mixed Rice In Stone Pot</h4>
-								<p class="tm-gallery-description">Cơm trộn nồi đá là một món ăn đơn giản, quen thuộc nhưng không kém phần đặc biệt bởi sự được kết hợp từ những nguyên liệu quen thuộc trong bữa ăn hàng ngày của người Hàn như cơm nóng, rau củ quả, thịt bò, trứng.</p>
-								<p class="tm-gallery-price">130,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">Cơm Trộn Thịt Bò - Mixed Rice With Beef</h4>
-								<p class="tm-gallery-description">Cơm trộn Hàn Quốc là một món ăn độc đáo được kết hợp từ cơm nóng và các loại nhân rau củ, trứng, thịt bò cùng nước xốt tương ớt đậm đà, không chỉ có hình thức bắt mắt mà hương vị còn thơm ngon tuyệt vời.</p>
-								<p class="tm-gallery-price">160,000₫</p>
-							</figcaption>
-						</figure>
-					</article>
-				</div> <!-- gallery page 1 -->
-			</div>
-
-		<footer class="tm-footer text-center">
-			<p>Hanuri restaurant</p>
-		</footer>
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/parallax.min.js"></script>
+		<script type="text/javascript" src="leaderboard.json"></script>
+		<script type="text/javascript" src="./js/question.js"></script>
+		<script type="text/javascript" src="./js/quiz_controller.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script>
+		<script type="text/javascript" src="./js/script.js"></script>
+		<script type="text/javascript" src="./js/particles.min.js"></script>
+		<script type="text/javascript" src="./js/animation.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
 </body>
 </html>
