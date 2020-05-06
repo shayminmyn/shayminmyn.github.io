@@ -154,7 +154,7 @@ let saveLeaderBoard = async () => {
     loadLeaderBoard(leaderboard.board);
     const content = document.getElementById("content_quiz").value.toLowerCase();
     const level = "beginer";
-    const url = 'http://35.229.167.122:3333/leaderboard/'+leaderboard._id;
+    const url = 'https://quizapimin.herokuapp.com/leaderboard/'+leaderboard._id;
     try {
         await fetch(url, {
             method: 'PUT',
