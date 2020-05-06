@@ -1,5 +1,5 @@
 body{
-	background: url("../images/background.jpg");
+	background: url('../images/background1.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin: 0;
@@ -47,6 +47,7 @@ body{
 }
 
 select {
+  position: absolute;
   border-radius: 5px;
   border-style: dashed;
   border-width: 1px; 
@@ -59,14 +60,14 @@ select {
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	margin-left: 100px;
+	margin-left: 60px;
 }
 
 #start-btn{
 	background-color: rgba(100, 100, 125, 0.2);
 	font-size: 1.7rem;
 	font-weight: bold;
-	padding: 20px 30px;
+	padding: 20px 30px; 
 	border-width: 2px; 
 	border-left-color: tomato;
 	border-top-color: dodgerblue;
@@ -86,7 +87,6 @@ select {
 }
 
 .btn span {
-
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -114,7 +114,7 @@ select {
 .controls{
 	background: rgba(255, 255, 255, 0.5);
 	display: flex;
-	margin: 10px 100px;
+	margin: 40px 100px;
 	justify-content: center;
 	align-items: center;
 	height: 100px;
@@ -138,6 +138,7 @@ select {
 	background-color: #00FFFF;
 	text-align: center;
 	color: #fff;
+	height: 50px;
 	font-size: 40px;
 	border-collapse: collapse;
 	border-radius: 10px;
@@ -192,7 +193,7 @@ select {
 	background-color: rgba(255, 255, 255, 0.8);
 	font-size: 25px;
 	height: 30px;
-	width: 110px;
+	width: 120px;
 	text-align: center;
 	border-style: solid;
 	border-radius: 10px;
@@ -204,9 +205,16 @@ select {
 #question{
 	font-family: sans-serif;
 	font-size: 100px;
-	height: 200px;
-	color: #5a6772;
+	height: 170px;
+	width: 180px;
+	color: #black;
 	text-align: center;
+	background: rgba(255, 255, 255, 0.8);
+	margin-top: 10px;
+	margin-left: 340px;
+	padding-top: 14px;
+	padding-left: 4px;
+	border-radius: 85px;
 }
 
 #textbox{
@@ -214,6 +222,7 @@ select {
 }
 
 #button{
+	position: absolute;
 	margin-top: 40px;
 }
 
@@ -252,18 +261,24 @@ select {
 	color: black;	
 }
 
+hr{
+	margin-top: 320px;
+	background-color: black;
+	border-style: solid;
+}
+
 #progress{
+	position: absolute;
+	font-weight: bold;
 	color: #2b2b2b;
-	font-size: 18px;
-	margin-left: 20px;
+	font-size: 16px;
+	margin-left: 10px;
+	margin-top: -14px;
 }
 #btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus{
 	outline: 0;
 }
 
-footer{
-	margin-top: 80px;
-}
 
 #display-right{
 	float: right;
@@ -282,10 +297,6 @@ td, th {
   padding-left: 40px;
 }
 
-hr{
-	background-color: black;
-	margin-bottom: -10px;
-}
 
 #controls-01{
 	background: rgba(255, 255, 255, 0.5);
@@ -393,13 +404,14 @@ hr{
 }
 
 #popup-name{
+	position: absolute;
 	border-style: solid;
 	border-radius: 10px;
 	font-size: 25px;
 	width: 200px;
 	height: 40px;
 	text-align: center;
-	margin-right: 140px;
+	left: 610px;
 	margin-top: 15px;
 }
 

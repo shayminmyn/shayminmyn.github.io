@@ -1,171 +1,133 @@
-function click(){
-    document.getElementById("start-btn").onclick = function() {countdown()};
-    populate();
-}
+/* -----------------------------------------------
+/* How to use? : Check the GitHub README
+/* ----------------------------------------------- */
 
-function populate() {
-    if(quiz.isEnded()) {
-        document.getElementById("quiz-area").classList.add('hide');
-        document.getElementById("display-left").classList.add('hide');
-        document.getElementById("restart-area").classList.remove('hide');
-        document.getElementById("restart-btn").classList.remove('hide');
-        document.getElementById("controls-01").classList.remove('hide');
-        document.getElementById("name-confirm").classList.remove('hide');
-        document.getElementById("popup-name").classList.remove('hide');
-        document.getElementById("enter-btn").classList.remove('hide');
-        showScores();
+/* To load a config file (particles.json) you need to host this demo (MAMP/WAMP/local)... */
+/*
+particlesJS.load('particles-js', 'particles.json', function() {
+  console.log('particles.js loaded - callback');
+});
+*/
 
-    }
-    else {
-        // show question
-        var element = document.getElementById("question");
-        element.innerHTML = quiz.getQuestionIndex().description;
-        var score = document.getElementById("show");
-        score.innerHTML = quiz.score;
-
-        // show options
-        var choices = quiz.getQuestionIndex().answers;
-        for(var i = 0; i < choices.length; i++) {
-            var element = document.getElementById("choice" + i);
-            element.innerHTML = choices[i].text;
-            guess("btn" + i, choices[i].text);
-
+/* Otherwise just put the config content (json): */
+// document.getElementById('particles-js').style.display = "block";
+particlesJS('particles-js',
+  
+  {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
         }
-
-        showProgress();
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 5,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 400,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true,
+    "config_demo": {
+      "hide_card": false,
+      "background_color": "#b61924",
+      "background_image": "",
+      "background_position": "50% 50%",
+      "background_repeat": "no-repeat",
+      "background_size": "cover"
     }
+  }
 
-};
-
-//Choose answer
-function guess(id, guess) {
-    var button = document.getElementById(id);
-    button.onclick = function() {
-        quiz.guess(guess);
-        populate();
-    }
-};
-
-//Show the process of making a question
-function showProgress() {
-    var currentQuestionNumber = quiz.questionIndex + 1;
-    var element = document.getElementById("progress");
-    element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
-};
-
-//Show score
-function showScores() {
-    var gameOverHTML = "<h1>Your score: " + quiz.score + "</h1>";
-    var element = document.getElementById("scores");
-    element.innerHTML = gameOverHTML;
-};
-
-//Set up time
-function countdown(){
-    var count = 59;
-    var interval = setInterval(function(){
-        document.getElementById('timer').innerHTML=count;
-        count--;
-        if(count === 0){
-            // document.getElementById("start-area").classList.add('hide');
-            document.getElementById("quiz-area").classList.add('hide');
-            document.getElementById("display-left").classList.add('hide');
-            document.getElementById("restart-area").classList.remove('hide');
-            document.getElementById("restart-btn").classList.remove('hide');
-            document.getElementById("controls-01").classList.remove('hide');
-            document.getElementById("name-confirm").classList.remove('hide');
-            document.getElementById("popup-name").classList.remove('hide');
-            document.getElementById("enter-btn").classList.remove('hide');
-            showScores();
-        }    
-    }, 1000);
-}
-//get questions
-function suffle(array){
-    for(let i=array.length-1;i>0;i--){
-        var j= Math.floor(Math.random() * (i + 1));
-        var temp = array[j];
-        array[j]=array[i];
-        array[i]=temp;
-    }
-}
-var quiz;
-let getQuestions = async () => {
-    const content = document.getElementById("content_quiz").value.toLowerCase();
-    const level = "beginer";
-    const url = 'https://quizapimin.herokuapp.com/questions/key?level='+level+'&content='+content;
-    try {
-        let res = await fetch(url);
-        let questions = await res.json();
-        let result = [];
-        questions.forEach(element => {
-            var q = new Question(element.type,element.level,element.content,element.description,element.answers);
-            suffle(q.answers); 
-            result.push(q);
-        });
-        suffle(result);
-        quiz = new Quiz(result);
-        countdown();
-        populate();
-        getLeaderBoard();
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-var leaderboard;
-let getLeaderBoard = async () => {
-    const content = document.getElementById("content_quiz").value.toLowerCase();
-    const level = "beginer";
-    const url = 'https://quizapimin.herokuapp.com/leaderboard?level='+level+'&content='+content;
-    try {
-        let res = await fetch(url);
-        leaderboard = await res.json();
-        loadLeaderBoard(leaderboard.board);
-
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-let loadLeaderBoard = (board) => {
-    for(let i = 0;i<board.length;i++){
-        let name = document.getElementById('name'+i);
-        let score = document.getElementById('score'+i);
-        name.innerHTML = board[i].name;
-        score.innerHTML = board[i].score;
-    }
-};
-
-
-let saveLeaderBoard = async () => {
-    const name = document.getElementById('popup-name').value;
-    const score = quiz.score;
-    const data = {
-        "name":name,
-        "score":score
-    };
-    leaderboard.board.push(data)
-    leaderboard.board.sort((a,b) => {return b.score - a.score});
-    if(leaderboard.board.length > 5){
-        leaderboard.board.pop()
-    }
-        
-    loadLeaderBoard(leaderboard.board);
-    const content = document.getElementById("content_quiz").value.toLowerCase();
-    const level = "beginer";
-    const url = 'https://quizapimin.herokuapp.com/leaderboard/'+leaderboard._id;
-    try {
-        await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(leaderboard),
-        });
-    } catch (error) {
-        console.error(error);
-    }
-
-}
-
+);
